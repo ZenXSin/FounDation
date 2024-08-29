@@ -13,6 +13,7 @@ import founDation.graphic.ModRenderers
 import mindustry.Vars
 import mindustry.content.Blocks
 import mindustry.content.Items
+import mindustry.content.Liquids
 import mindustry.content.UnitTypes
 import mindustry.entities.Damage
 import mindustry.game.Team
@@ -23,6 +24,7 @@ import mindustry.world.blocks.payloads.BuildPayload
 import mindustry.world.blocks.storage.CoreBlock
 
 open class HumeCore(name: String) : CoreBlock(name) {
+    var turretblock = Blocks.spectre
     init {
         update = true
         solid = true
@@ -31,15 +33,14 @@ open class HumeCore(name: String) : CoreBlock(name) {
     }
 
     open inner class HumeCoreBuild : CoreBuild() {
-        private val turret = BuildPayload(Blocks.spectre, Team.derelict)
+        var turret:BuildPayload = BuildPayload(turretblock, Team.derelict)
         private var narrative: NowNarrative = NowNarrative()
         override fun updateTile() {
             super.updateTile()
             if (turret.build.team != team) turret.build.team = team
             turret.update(null, this)
-            if (turret.build.acceptItem(this, Items.thorium) && items.get(Items.thorium) >= 1) {
-                turret.build.handleItem(this, Items.thorium)
-                items.remove(Items.thorium, 1)
+            if (turret.build.acceptLiquid(this, Liquids.cryofluid)) {
+                turret.build.handleLiquid(this, Liquids.cryofluid,1f)
             }
             turret.set(x, y, payloadRotation)
         }
@@ -72,16 +73,12 @@ open class HumeCore(name: String) : CoreBlock(name) {
         override fun write(write: Writes?) {
             super.write(write)
             write?.let {
-                it.f(narrative.narrativeStability?: 0f)
-                it.str(narrative.narrativeType?.name ?: "")
             }
         }
 
         override fun read(read: Reads?, revision: Byte) {
             super.read(read, revision)
             read?.let {
-                narrative.narrativeStability = it.f()
-                narrative.narrativeType = Narrates.findNarrativeByName(it.str())
             }
         }
     }
