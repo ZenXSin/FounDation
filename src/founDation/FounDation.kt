@@ -1,8 +1,6 @@
 package founDation
 
-import arc.Core
-import arc.util.Log
-import founDation.blocks.Blocks
+import founDation.content.Blocks
 import founDation.environment.WorldHume
 import mindustry.Vars
 import mindustry.mod.Mod

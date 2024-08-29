@@ -1,20 +1,17 @@
-package founDation.blocks
+package founDation.content
 
 import arc.Core
 import founDation.type.HumeCore
-import mindustry.content.Blocks
 import mindustry.content.Fx
 import mindustry.content.Items
 import mindustry.content.StatusEffects
 import mindustry.entities.bullet.ContinuousLaserBulletType
-import mindustry.game.Team
 import mindustry.gen.Sounds
 import mindustry.graphics.Pal
 import mindustry.type.Category
 import mindustry.type.ItemStack
 import mindustry.world.blocks.defense.turrets.LaserTurret
 import mindustry.world.blocks.defense.turrets.Turret
-import mindustry.world.blocks.payloads.BuildPayload
 import mindustry.world.draw.DrawTurret
 import mindustry.world.meta.Env
 
@@ -28,7 +25,7 @@ object Blocks {
                 shootEffect = Fx.shootBigSmoke2
                 shootCone = 40f
                 recoil = 4f
-                size = 1
+                size = 4
                 shake = 2f
                 range = 595f
                 reload = 0f
@@ -51,7 +48,6 @@ object Blocks {
                         incendSpread = 5f
                         incendAmount = 1
                         ammoMultiplier = 1f
-
                     }
                 }
                 drawer = object :DrawTurret() {
