@@ -55,8 +55,12 @@ open class HumeCore(name: String) : TurretCoreBlock(name) {
         }
 
         override fun buildConfiguration(table: Table?) {
-            table?.table(Styles.black8) { t ->
-                t.add("世界平均休谟：${WorldHume.getAverageHume()}\n半径50格平均休谟：${WorldHume.getAverageHume(tileX(),tileY(),50f)}")
+            table?.table(Styles.black3) { t ->
+                t.add("世界平均休谟：${WorldHume.getAverageHume()}\n半径50格平均休谟：${WorldHume.getAverageHume(tileX(),tileY(),50f)}").row()
+                t.button("设置核心炮台") {
+                    table.clear()
+                    setNowTurret(table)
+                }.fill(true)
             }?.row()
         }
 

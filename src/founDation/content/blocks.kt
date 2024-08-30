@@ -4,6 +4,7 @@ import arc.Core
 import arc.struct.Seq
 import founDation.type.HumeCore
 import founDation.type.TurretCoreBlock
+import mindustry.content.Blocks
 import mindustry.content.Fx
 import mindustry.content.Items
 import mindustry.content.StatusEffects
@@ -66,7 +67,7 @@ object Blocks {
         }
         smallHumeCore = object :HumeCore("hume-core-small") {
             init {
-                turrets = Seq.with(smallHumeCoreTurret)
+                turrets = Seq.with(smallHumeCoreTurret,Blocks.spectre)
                 health = 400000
                 size = 8
                 category = Category.effect

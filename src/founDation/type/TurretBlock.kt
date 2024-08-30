@@ -4,7 +4,7 @@ import arc.graphics.Color
 import arc.scene.ui.layout.Table
 import arc.struct.Seq
 import mindustry.Vars
-import mindustry.content.Blocks.turrets[0]
+import mindustry.content.Blocks.*
 import mindustry.content.Liquids
 import mindustry.game.Team
 import mindustry.graphics.Drawf
