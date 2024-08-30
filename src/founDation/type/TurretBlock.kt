@@ -4,7 +4,7 @@ import arc.graphics.Color
 import arc.scene.ui.layout.Table
 import arc.struct.Seq
 import mindustry.Vars
-import mindustry.content.Blocks.duo
+import mindustry.content.Blocks.turrets[0]
 import mindustry.content.Liquids
 import mindustry.game.Team
 import mindustry.graphics.Drawf
@@ -23,23 +23,17 @@ open class TurretCoreBlock(name: String) : CoreBlock(name) {
         update = true
         solid = true
         config(Block::class.java) { build: TurretCoreBuild, turret: Block? ->
-            build.turretPayload = BuildPayload(turret ?: duo, Team.derelict)
+            build.turretPayload = BuildPayload(turret ?: turrets[0], Team.derelict)
         }
-        configClear { build: TurretCoreBuild -> build.nowTurret = duo }
+        configClear { build: TurretCoreBuild -> build.nowTurret = turrets[0] }
     }
 
     open inner class TurretCoreBuild : CoreBuild() {
-        var nowTurret: Block = duo
+        var nowTurret: Block = turrets[0]
         var turretPayload = BuildPayload(nowTurret, Team.derelict)
         override fun buildConfiguration(table: Table?) {
             super.buildConfiguration(table)
-            ItemSelection.buildTable(
-                this.block, table, if (turrets.isEmpty) Vars.content.blocks().select { b: Block? ->
-                    b != null && b is Turret && b.size <= size
-                } else turrets,
-                { nowTurret },
-                { value: Block? -> nowTurret = value ?: duo }, 5, 4
-            )
+            setNowTurret(table)
         }
 
         override fun updateTile() {
@@ -65,6 +59,16 @@ open class TurretCoreBlock(name: String) : CoreBlock(name) {
         override fun draw() {
             super.draw()
             turretPayload.build.draw()
+        }
+        
+        fun setNowTurret(table: Table?) {
+            ItemSelection.buildTable(
+                this.block, table, if (turrets.isEmpty) Vars.content.blocks().select { b: Block? ->
+                    b != null && b is Turret && b.size <= size
+                } else turrets,
+                { nowTurret },
+                { value: Block? -> nowTurret = value ?: turrets[0] }, 5, 4
+            )
         }
     }
 }

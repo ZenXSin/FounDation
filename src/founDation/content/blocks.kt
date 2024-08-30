@@ -1,6 +1,7 @@
 package founDation.content
 
 import arc.Core
+import arc.struct.Seq
 import founDation.type.HumeCore
 import founDation.type.TurretCoreBlock
 import mindustry.content.Fx
@@ -65,7 +66,7 @@ object Blocks {
         }
         smallHumeCore = object :HumeCore("hume-core-small") {
             init {
-                turretSize = 4
+                turrets = Seq.with(smallHumeCoreTurret)
                 health = 400000
                 size = 8
                 category = Category.effect
