@@ -2,8 +2,7 @@ package founDation.content
 
 import arc.Core
 import arc.struct.Seq
-import founDation.type.HumeCore
-import founDation.type.TurretCoreBlock
+import founDation.world.content.HumeCore
 import mindustry.content.Blocks
 import mindustry.content.Fx
 import mindustry.content.Items
@@ -15,7 +14,6 @@ import mindustry.type.Category
 import mindustry.type.ItemStack
 import mindustry.world.Block
 import mindustry.world.blocks.defense.turrets.LaserTurret
-import mindustry.world.blocks.defense.turrets.Turret
 import mindustry.world.consumers.ConsumeLiquidBase
 import mindustry.world.draw.DrawTurret
 import mindustry.world.meta.Env
@@ -65,7 +63,7 @@ object Blocks {
                 scaledHealth = 200f
             }
         }
-        smallHumeCore = object :HumeCore("hume-core-small") {
+        smallHumeCore = object : HumeCore("hume-core-small") {
             init {
                 turrets = Seq.with(smallHumeCoreTurret,Blocks.spectre)
                 health = 400000

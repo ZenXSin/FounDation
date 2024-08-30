@@ -1,10 +1,9 @@
-package founDation.type
+package founDation.world.content
 
 import arc.graphics.Color
 import arc.scene.ui.layout.Table
 import arc.struct.Seq
 import mindustry.Vars
-import mindustry.content.Blocks.*
 import mindustry.content.Liquids
 import mindustry.game.Team
 import mindustry.graphics.Drawf

@@ -1,14 +1,7 @@
 package founDation.environment
 
-import arc.Core
-import arc.graphics.Color
-import arc.graphics.gl.Shader
 import arc.struct.ObjectMap
 import founDation.type.Narrative
-import mindustry.Vars
-import mindustry.entities.Effect
-import mindustry.graphics.Drawf
-import kotlin.reflect.KCallable
 import kotlin.reflect.KProperty1
 
 object Narrates {

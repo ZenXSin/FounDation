@@ -1,4 +1,4 @@
-package founDation.type
+package founDation.world.content
 
 import arc.Core
 import arc.graphics.g2d.Draw
@@ -7,7 +7,7 @@ import mindustry.Vars
 import mindustry.world.blocks.defense.Wall
 
 
-class Aisle(name: String?) : Wall(name) {
+class AisleBlock(name: String?) : Wall(name) {
     var texture: Array<TextureRegion?> = arrayOfNulls(11)
 
     init {

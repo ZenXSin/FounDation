@@ -13,7 +13,6 @@ object WorldHume {
     private var humeTile: MutableMap<Pair<Int, Int>, Hume> = mutableMapOf()
     fun load() {
         Events.on(EventType.SaveLoadEvent::class.java) {
-            Log.log(Log.LogLevel.err, "***")
             Vars.state.map.let {
                 try {
                     if (it.tags["hasHumeTile"].toBoolean()) {
@@ -32,7 +31,6 @@ object WorldHume {
                         }
                     }
                 } catch (e: Exception) {
-                    Log.log(Log.LogLevel.err, "2***")
                     Log.log(Log.LogLevel.err, e.toString())
                     repeat(it.width) { x ->
                         repeat(it.height) { y ->
@@ -44,7 +42,6 @@ object WorldHume {
         }
         Events.on(EventType.SaveWriteEvent::class.java) {
             Vars.state.map.tags.let {
-                Log.log(Log.LogLevel.err, "3")
                 it.put("hasHumeTile", "true")
                 humeTile.forEach { (p, h) ->
                     it.put(p.toString(), h.toString())
