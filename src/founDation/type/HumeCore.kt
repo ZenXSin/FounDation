@@ -55,9 +55,11 @@ open class HumeCore(name: String) : TurretCoreBlock(name) {
         }
 
         override fun buildConfiguration(table: Table?) {
-            super.buildConfiguration(table)
             table?.table(Styles.black8) { t ->
                 t.add("世界平均休谟：${WorldHume.getAverageHume()}\n半径50格平均休谟：${WorldHume.getAverageHume(tileX(),tileY(),50f)}")
+                t.button("选择炮台") {
+                    super.buildConfiguration(table)
+                }
             }?.row()
         }
 
