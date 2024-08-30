@@ -4,6 +4,7 @@ import arc.Core
 import arc.math.Mathf
 import arc.scene.style.TextureRegionDrawable
 import arc.scene.ui.layout.Table
+import arc.struct.Seq
 import arc.util.Log
 import arc.util.Time
 import arc.util.io.Reads
@@ -29,32 +30,21 @@ import mindustry.ui.Styles
 import mindustry.world.blocks.payloads.BuildPayload
 import mindustry.world.blocks.storage.CoreBlock
 
-open class HumeCore(name: String) : CoreBlock(name) {
+open class HumeCore(name: String) : TurretCoreBlock(name) {
     var turretblock = Blocks.spectre
     init {
-        update = true
-        solid = true
-        configurable = true
         unitType = UnitTypes.quad
     }
 
-    open inner class HumeCoreBuild : CoreBuild() {
-        var turret:BuildPayload = BuildPayload(turretblock, Team.derelict)
+    open inner class HumeCoreBuild : TurretCoreBuild() {
         private var narrative: NowNarrative = NowNarrative()
         override fun updateTile() {
             super.updateTile()
-            if (turret.build.team != team) turret.build.team = team
-            turret.update(null, this)
-            if (turret.build.acceptLiquid(this, Liquids.cryofluid)) {
-                turret.build.handleLiquid(this, Liquids.cryofluid,1f)
-            }
-            turret.set(x, y, payloadRotation)
         }
 
         override fun draw() {
             super.draw()
             ModRenderers.contrast.increase = Mathf.sin(Time.time / 15f) * 0.5f + 0.5f
-            turret.draw()
         }
 
         override fun handleDamage(amount: Float): Float {

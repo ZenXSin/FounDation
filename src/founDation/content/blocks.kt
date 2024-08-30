@@ -2,6 +2,7 @@ package founDation.content
 
 import arc.Core
 import founDation.type.HumeCore
+import founDation.type.TurretCoreBlock
 import mindustry.content.Fx
 import mindustry.content.Items
 import mindustry.content.StatusEffects
@@ -10,6 +11,7 @@ import mindustry.gen.Sounds
 import mindustry.graphics.Pal
 import mindustry.type.Category
 import mindustry.type.ItemStack
+import mindustry.world.Block
 import mindustry.world.blocks.defense.turrets.LaserTurret
 import mindustry.world.blocks.defense.turrets.Turret
 import mindustry.world.consumers.ConsumeLiquidBase
@@ -18,8 +20,8 @@ import mindustry.world.meta.Env
 
 //aisle
 object Blocks {
-    var smallHumeCore: HumeCore? = null
-    var smallHumeCoreTurret: Turret? = null
+    var smallHumeCore: Block? = null
+    var smallHumeCoreTurret: Block? = null
     fun load() {
         smallHumeCoreTurret = object : LaserTurret("hume-core-small-turret") {
             init {
@@ -63,6 +65,7 @@ object Blocks {
         }
         smallHumeCore = object :HumeCore("hume-core-small") {
             init {
+                turretSize = 4
                 health = 400000
                 size = 8
                 category = Category.effect

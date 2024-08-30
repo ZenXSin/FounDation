@@ -121,8 +121,8 @@ object WorldHume {
     fun getAverageHume(x: Int, y: Int, range: Float): Float {
         var average = 0f
         val map = humeTile.filter { distanceBetweenVectors(x, y, it.value.x, it.value.y) <= range }
-        humeTile.forEach { average += it.value.humeIndex }
-        return average / humeTile.size
+        map.forEach { average += it.value.humeIndex }
+        return average / map.size
     }
 
     fun getAverageHume(): Float {
