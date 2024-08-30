@@ -12,6 +12,7 @@ import mindustry.type.Category
 import mindustry.type.ItemStack
 import mindustry.world.blocks.defense.turrets.LaserTurret
 import mindustry.world.blocks.defense.turrets.Turret
+import mindustry.world.consumers.ConsumeLiquidBase
 import mindustry.world.draw.DrawTurret
 import mindustry.world.meta.Env
 
@@ -22,6 +23,8 @@ object Blocks {
     fun load() {
         smallHumeCoreTurret = object : LaserTurret("hume-core-small-turret") {
             init {
+                coolant = object :ConsumeLiquidBase(5f) {}
+                description = ""
                 shootEffect = Fx.shootBigSmoke2
                 shootCone = 40f
                 recoil = 4f
@@ -36,7 +39,7 @@ object Blocks {
                 loopSoundVolume = 2f
                 envEnabled = envEnabled or Env.space
 
-                shootType = object : ContinuousLaserBulletType(300f) {
+                shootType = object : ContinuousLaserBulletType(800f) {
                     init {
                         length = 600f
                         hitEffect = Fx.hitMeltdown

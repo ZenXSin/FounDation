@@ -4,6 +4,7 @@ import arc.Core
 import arc.math.Mathf
 import arc.scene.style.TextureRegionDrawable
 import arc.scene.ui.layout.Table
+import arc.util.Log
 import arc.util.Time
 import arc.util.io.Reads
 import arc.util.io.Writes
@@ -14,9 +15,14 @@ import mindustry.Vars
 import mindustry.content.Blocks
 import mindustry.content.Items
 import mindustry.content.Liquids
+import mindustry.content.StatusEffects
 import mindustry.content.UnitTypes
 import mindustry.entities.Damage
+import mindustry.entities.Units
+import mindustry.entities.units.StatusEntry
 import mindustry.game.Team
+import mindustry.gen.Groups
+import mindustry.gen.Statusc
 import mindustry.gen.Tex
 import mindustry.graphics.Pal
 import mindustry.ui.Styles
@@ -60,14 +66,9 @@ open class HumeCore(name: String) : CoreBlock(name) {
 
         override fun buildConfiguration(table: Table?) {
             super.buildConfiguration(table)
-            table?.let {
-                it.table(Styles.black6) { bt ->
-                    bt.add(WorldHume.humeIndex.toString()).row()
-                    bt.button("set") {
-                        WorldHume.humeIndex = 70f
-                    }.row()
-                }
-            }
+            table?.table(Styles.black8) { t ->
+                t.add("世界平均休谟：${WorldHume.getAverageHume()}\n半径50格平均休谟：${WorldHume.getAverageHume(tileX(),tileY(),50f)}")
+            }?.row()
         }
 
         override fun write(write: Writes?) {
