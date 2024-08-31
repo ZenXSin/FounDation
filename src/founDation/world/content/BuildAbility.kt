@@ -1,4 +1,5 @@
 package founDation.world.content
 
-class buildAbility {
+object BuildAbility {
+
 }

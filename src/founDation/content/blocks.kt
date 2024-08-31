@@ -70,7 +70,6 @@ object Blocks {
                 size = 8
                 category = Category.effect
                 requirements(Category.effect, ItemStack.with(Items.copper, 3000, Items.lead, 3000, Items.silicon, 2000))
-                turretblock = smallHumeCoreTurret
             }
         }
     }

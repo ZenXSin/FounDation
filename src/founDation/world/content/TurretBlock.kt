@@ -3,7 +3,9 @@ package founDation.world.content
 import arc.graphics.Color
 import arc.scene.ui.layout.Table
 import arc.struct.Seq
+import founDation.graphic.ModRenderers
 import mindustry.Vars
+import mindustry.content.Blocks
 import mindustry.content.Liquids
 import mindustry.game.Team
 import mindustry.graphics.Drawf
@@ -22,23 +24,24 @@ open class TurretCoreBlock(name: String) : CoreBlock(name) {
         update = true
         solid = true
         config(Block::class.java) { build: TurretCoreBuild, turret: Block? ->
-            build.turretPayload = BuildPayload(turret ?: turrets[0], Team.derelict)
+            build.turretPayload = BuildPayload(turret ?: turrets[0], build.team)
         }
         configClear { build: TurretCoreBuild -> build.nowTurret = turrets[0] }
     }
 
     open inner class TurretCoreBuild : CoreBuild() {
         var nowTurret: Block = turrets[0]
-        var turretPayload = BuildPayload(nowTurret, Team.derelict)
+        var turretPayload = BuildPayload(nowTurret, team)
         override fun buildConfiguration(table: Table?) {
             super.buildConfiguration(table)
             setNowTurret(table)
         }
-
-        override fun updateTile() {
-            super.updateTile()
-            turretPayload.update(null, this)
+        override fun update() {
+            super.update()
             if (turretPayload.block() != nowTurret) turretPayload = BuildPayload(nowTurret, turretPayload.build.team)
+            turretPayload.build.enabled = true
+            turretPayload.update(null, this)
+            turretPayload.set(x,y,turretPayload.build.payloadRotation)
             if (turretPayload.build.team != team) turretPayload.build.team = team
             if (turretPayload.build.acceptLiquid(this, Liquids.cryofluid)) turretPayload.build.handleLiquid(this, Liquids.cryofluid,5f)
             items.each { item, amount ->
@@ -47,7 +50,6 @@ open class TurretCoreBlock(name: String) : CoreBlock(name) {
                     items.remove(item,1)
                 }
             }
-            turretPayload.set(x,y,turretPayload.build.payloadRotation)
         }
 
         override fun drawSelect() {

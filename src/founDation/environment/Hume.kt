@@ -11,8 +11,10 @@ object WorldHume {
     var benchmarkHume = 100f
     private var invalid = false
     private var humeTile: MutableMap<Pair<Int, Int>, Hume> = mutableMapOf()
+    private var inGame = false
     fun load() {
         Events.on(EventType.SaveLoadEvent::class.java) {
+            inGame = true
             Vars.state.map.let {
                 try {
                     if (it.tags["hasHumeTile"].toBoolean()) {
@@ -23,7 +25,6 @@ object WorldHume {
                             }
                         }
                     } else {
-                        Log.log(Log.LogLevel.err, "1")
                         repeat(it.width) { x ->
                             repeat(it.height) { y ->
                                 Hume(x, y).load()
@@ -41,6 +42,7 @@ object WorldHume {
             }
         }
         Events.on(EventType.SaveWriteEvent::class.java) {
+            inGame = false
             Vars.state.map.tags.let {
                 it.put("hasHumeTile", "true")
                 humeTile.forEach { (p, h) ->

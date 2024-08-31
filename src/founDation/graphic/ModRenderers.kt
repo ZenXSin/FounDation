@@ -22,7 +22,7 @@ class ModRenderers {
             }
         }
 
-        private fun advancedDraw() {
+        fun advancedDraw() {
             Draw.draw(Layer.background - 0.1f) {
                 frame?.resize(graphics.width, graphics.height)
                 frame?.begin()

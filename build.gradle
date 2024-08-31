@@ -4,14 +4,14 @@ buildscript{
     repositories{
         mavenCentral()
     }
-    
+
     ext{
         //the build number that this mod is made for
         mindustryVersion = 'v146'
         kotlinVersion = "1.5.21"
         sdkRoot = System.getenv("ANDROID_HOME") ?: System.getenv("ANDROID_SDK_ROOT")
     }
-    
+
     dependencies{
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
@@ -61,13 +61,13 @@ task jarAndroid{
 
         //dex and desugar files - this requires d8 in your PATH
         "d8 $dependencies --min-api 14 --output ${project.archivesBaseName}Android.jar ${project.archivesBaseName}Desktop.jar"
-            .execute(null, new File("$buildDir/libs")).waitForProcessOutput(System.out, System.err)
+                .execute(null, new File("$buildDir/libs")).waitForProcessOutput(System.out, System.err)
     }
 }
 
 jar{
     duplicatesStrategy = 'exclude' // 或者 'fail'，根据你的需求选择
-	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     archiveFileName = "${project.archivesBaseName}Desktop.jar"
 
     from{
