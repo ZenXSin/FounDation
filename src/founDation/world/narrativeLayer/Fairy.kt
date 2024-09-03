@@ -9,15 +9,8 @@ import mindustry.game.EventType
 
 object Fairy:NarrativeLayer("Fairy") {
     override fun begin() {
-        ModRenderers.contrast.increase = 5 - (WorldNarrate.narrate?.narrativeStability ?: 0f)
     }
 
     override fun end() {
-        ModRenderers.contrast.increase = 1f
     }
-     override fun load() {
-         Events.on(EventType.Trigger.draw::class.java) {
-             //ModRenderers.contrast.advancedDraw()
-         }
-     }
 }

@@ -20,12 +20,6 @@ object WorldNarrate {
     class Narrate {
         var narrativeStability: Float = 1f
         var narrativeLayer: NarrativeLayer = Reality
-            set(value) {
-                field.end()
-                field = value
-                field.begin()
-
-            }
         fun load() {
             Events.on(EventType.SaveWriteEvent::class.java) {
                 inGame = false
