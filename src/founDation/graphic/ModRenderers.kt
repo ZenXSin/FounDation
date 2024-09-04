@@ -16,7 +16,7 @@ class ModRenderers {
         init {
             if (!Vars.headless) {
                // frame = FrameBuffer()
-                Events.on(Trigger.drawOver::class.java) {
+                Events.run(Trigger.Draw) {
                    // advancedDraw()
                    // Draw.reset()
                      Draw.blit(ModShaders.contrast)
