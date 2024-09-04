@@ -15,10 +15,11 @@ class ModRenderers {
         var increase: Float = 0f
         init {
             if (!Vars.headless) {
-                frame = FrameBuffer()
+               // frame = FrameBuffer()
                 Events.on(Trigger.drawOver::class.java) {
-                    advancedDraw()
-                    Draw.reset()
+                   // advancedDraw()
+                   // Draw.reset()
+                     Draw.blit(ModShaders.contrast)
                 }
             }
         }
