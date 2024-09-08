@@ -7,7 +7,7 @@ import arc.scene.ui.layout.Table
 import arc.util.Time
 import arc.util.io.Reads
 import arc.util.io.Writes
-import founDation.environment.WorldHume
+import founDation.environment.Humes
 import founDation.environment.WorldNarrate
 import founDation.graphic.ModRenderers
 import founDation.graphic.ModShaders
@@ -24,17 +24,17 @@ open class HumeCore(name: String) : TurretCoreBlock(name) {
     open inner class HumeCoreBuild : TurretCoreBuild() {
         override fun buildConfiguration(table: Table?) {
             table?.table(Styles.black3) { t ->
-                t.add("世界平均休谟：${WorldHume.getAverageHume()}\n半径50格平均休谟：${WorldHume.getAverageHume(tileX(),tileY(),50f)}").row()
-                t.add("叙事稳定度：${WorldNarrate.narrate?.narrativeStability?.times(100)}%\n所在叙事层：${WorldNarrate.narrate?.narrativeLayer?.localName}").row()
+                t.add("世界平均休谟：${Humes.humeIndex}"/*\n半径50格平均休谟：${WorldHume.getAverageHume(tileX(),tileY(),50f)}"*/).row()
+                //t.add("叙事稳定度：${WorldNarrate.narrate?.narrativeStability?.times(100)}%\n所在叙事层：${WorldNarrate.narrate?.narrativeLayer?.localName}").row()
                 t.button("设置核心炮台") {
                     table.clear()
                     setNowTurret(table)
                 }.fill(true).row()
                 t.button("set") {
-                    ModShaders.contrast.increase = 0.5f
+                    Humes.humeIndex = 50f
                 }.row()
                 t.button("set2") {
-                    ModShaders.contrast.increase = 0f
+                    Humes.humeIndex = 80f
                 }.row()
             }
         }

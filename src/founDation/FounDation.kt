@@ -2,7 +2,7 @@ package founDation
 
 import arc.Events
 import founDation.content.Blocks
-import founDation.environment.WorldHume
+import founDation.environment.Humes
 import founDation.environment.WorldNarrate
 import founDation.graphic.ModRenderers
 import founDation.world.narrativeLayer.NarrativeLayers
@@ -18,7 +18,7 @@ class FounDation : Mod(){
 
         super.loadContent()
         Blocks.load()
-        WorldHume.load()
+        Humes
         WorldNarrate.load()
         NarrativeLayers.load()
     }
