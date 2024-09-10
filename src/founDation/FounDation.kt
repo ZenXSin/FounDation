@@ -2,6 +2,7 @@ package founDation
 
 import arc.Events
 import founDation.content.Blocks
+import founDation.content.UnitTypes
 import founDation.environment.Humes
 import founDation.environment.WorldNarrate
 import founDation.graphic.ModRenderers
@@ -17,10 +18,11 @@ class FounDation : Mod(){
         MOD = Vars.mods.getMod(javaClass)
 
         super.loadContent()
-        Blocks.load()
-        Humes
-        WorldNarrate.load()
         NarrativeLayers.load()
+        WorldNarrate.load()
+        Humes
+        UnitTypes.load()
+        Blocks.load()
     }
 
     companion object {

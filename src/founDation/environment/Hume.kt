@@ -10,9 +10,9 @@ import java.io.DataOutput
 
 object Humes : CustomChunk {
     var benchmarkHume = 100f
-    var TileHume: MutableMap<Pair<Int, Int>, Hume> = mutableMapOf()
+    private var TileHume: MutableMap<Pair<Int, Int>, Hume> = mutableMapOf()
 
-    fun getTileHume(): String {
+    private fun getTileHume(): String {
         var ret = ""
         TileHume.forEach { (_, u) ->
             ret += "$u||"
@@ -20,7 +20,7 @@ object Humes : CustomChunk {
         return ret
     }
 
-    fun readTileHume(s: String) {
+    private fun readTileHume(s: String) {
         s.split("||").forEach {
             readHume(it)
         }
@@ -33,7 +33,7 @@ object Humes : CustomChunk {
         }
     }
 
-    fun readHume(s: String) {
+    private fun readHume(s: String) {
         val tag = s.split(" ")
         val hume = Hume(tag[0].toInt(), tag[1].toInt())
         hume.humeIndex = tag[2].toFloat()

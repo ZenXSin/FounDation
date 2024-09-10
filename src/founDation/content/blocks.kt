@@ -65,6 +65,7 @@ object Blocks {
         }
         smallHumeCore = object : HumeCore("hume-core-small") {
             init {
+                unitType = UnitTypes.GAMMA_BT2
                 turrets = Seq.with(smallHumeCoreTurret,Blocks.spectre)
                 health = 400000
                 size = 8

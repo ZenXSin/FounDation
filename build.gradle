@@ -45,7 +45,10 @@ compileKotlin{
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
-
+dependencies{
+    // Downgrade Java 9+ syntax into being available in Java 8.
+    annotationProcessor "com.github.GlennFolker.EntityAnno:downgrader:v146.0.7"
+}
 task jarAndroid{
     dependsOn "jar"
 
