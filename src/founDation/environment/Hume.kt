@@ -54,7 +54,7 @@ object Humes : CustomChunk {
         }
     }
 
-    init {
+    fun load() {
         SaveVersion.addCustomChunk("Hume", this)
 
         Events.on(EventType.SaveLoadEvent::class.java) {

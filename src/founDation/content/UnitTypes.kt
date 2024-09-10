@@ -32,7 +32,7 @@ object UnitTypes {
                 engineSize = 10f
                 hitSize = 40f
 
-                abilities.add(UnitSpawnAbility(UnitTypes.mono, 60 * 5f, 5.45f, -17.5f))
+                abilities.add(UnitSpawnAbility(UnitTypes.mono, 60 * 5f, 6f, -17.5f))
 
                 constructor = EntityMapping.map("gamma") as Prov<out Unit>?
 

@@ -18,9 +18,9 @@ class FounDation : Mod(){
         MOD = Vars.mods.getMod(javaClass)
 
         super.loadContent()
+        Humes.load()
         NarrativeLayers.load()
         WorldNarrate.load()
-        Humes
         UnitTypes.load()
         Blocks.load()
     }
