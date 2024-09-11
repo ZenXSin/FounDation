@@ -16,11 +16,8 @@ class FounDation : Mod(){
 
     override fun loadContent() {
         MOD = Vars.mods.getMod(javaClass)
-
         super.loadContent()
         Humes.load()
-        NarrativeLayers.load()
-        WorldNarrate.load()
         UnitTypes.load()
         Blocks.load()
     }
